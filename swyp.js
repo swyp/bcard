@@ -26,7 +26,17 @@
     $swypframe = $('<iframe/>').attr('id', 'swypframe').attr('scrolling', 'no').attr('src', testing ? 'http://127.0.0.1:3000' : 'https://swypserver.herokuapp.com');
     $('body').append($swypframe);
     $swypWindow = $('#swypframe')[0].contentWindow;
-    return $('#sunset').live(eventsForDevice[0], function(e) {
+    $('#sherbondyCard').live(eventsForDevice[0], function(e) {
+      var imgSrc;
+      imgSrc = $(this).attr('src');
+      $('#swypframe').show();
+      return $swypWindow.postMessage({
+        e: 'dragstart',
+        img: imgSrc,
+        touches: [e.screenX, e.screenY]
+      }, "*");
+    });
+    return $('#alexCard').live(eventsForDevice[0], function(e) {
       var imgSrc;
       imgSrc = $(this).attr('src');
       $('#swypframe').show();

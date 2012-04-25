@@ -30,7 +30,14 @@ $ ->
 
   $swypWindow = $('#swypframe')[0].contentWindow
 
-  $('#sunset').live(eventsForDevice[0], (e)->
+  $('#sherbondyCard').live(eventsForDevice[0], (e)->
+    imgSrc =  $(this).attr 'src'
+    $('#swypframe').show()
+    # message, targetOrigin: 
+    # change targetOrigin to the real swyp server url in production
+    $swypWindow.postMessage {e: 'dragstart', img: imgSrc, touches:[e.screenX, e.screenY]}, "*"
+  )
+  $('#alexCard').live(eventsForDevice[0], (e)->
     imgSrc =  $(this).attr 'src'
     $('#swypframe').show()
     # message, targetOrigin: 
